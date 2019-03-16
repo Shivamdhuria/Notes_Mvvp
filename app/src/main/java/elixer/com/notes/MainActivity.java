@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.squareup.leakcanary.LeakCanary;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,11 +17,13 @@ import elixer.com.notes.model.NoteViewModel;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private NoteViewModel mNoteViewModel;
     public static final int ADD_NOTE_REQUEST_CODE = 1;
+    static Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +31,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        button = findViewById(R.id.button);
+
 
         FloatingActionButton fab = findViewById(R.id.fab_add);
         fab.setOnClickListener(view -> {
             Intent addNoteIntent = new Intent(MainActivity.this, AddNoteActivity.class);
             startActivityForResult(addNoteIntent, ADD_NOTE_REQUEST_CODE);
         });
+
 
         RecyclerView recyclerView = findViewById(R.id.recycylerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
