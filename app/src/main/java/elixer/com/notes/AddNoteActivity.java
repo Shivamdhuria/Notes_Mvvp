@@ -36,16 +36,16 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.button)
-    public void OnButtonClick(View view){
-        Intent intent = new Intent(this,MainActivity.class);
+    public void onButtonClick(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
         Log.e("MAIN ACTIVITY", title.getText().toString());
         Log.e("MAIN ACTIVITY", description.getText().toString());
         Log.e("MAIN ACTIVITY", priority.getText().toString());
-        intent.putExtra(EXTRA_TITLE,title.getText().toString());
-        intent.putExtra(EXTRA_DESCRIPTION,description.getText().toString());
-        intent.putExtra(EXTRA_PRIORITY,Integer.parseInt(priority.getText().toString()));
+        intent.putExtra(EXTRA_TITLE, title.getText().toString());
+        intent.putExtra(EXTRA_DESCRIPTION, description.getText().toString());
+        intent.putExtra(EXTRA_PRIORITY, Integer.parseInt(priority.getText().toString()));
 
-        setResult(RESULT_OK,intent);
+        setResult(RESULT_OK, intent);
         finish();
 
     }

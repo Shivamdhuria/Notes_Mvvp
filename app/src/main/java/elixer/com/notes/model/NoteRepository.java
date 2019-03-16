@@ -9,52 +9,52 @@ import androidx.lifecycle.LiveData;
 
 public class NoteRepository {
 
-    private NoteDao noteDao;
-    private LiveData<List<Note>> allNotes;
+    private NoteDao mNoteDao;
+    private LiveData<List<Note>> mAllNotes;
 
     public NoteRepository(Application application) {
         NoteDatabase database = NoteDatabase.getInstance(application);
-        noteDao = database.noteDao();
-        allNotes = noteDao.getAllNotes();
+        mNoteDao = database.noteDao();
+        mAllNotes = mNoteDao.getAllNotes();
     }
 
-    public void insert(Note note){
-        new InsertNoteAsync(noteDao).execute(note);
+    public void insert(Note note) {
+        new InsertNoteAsync(mNoteDao).execute(note);
 
     }
 
-    public void delete(Note note){
-        new DeleteNoteAsync(noteDao).execute(note);
+    public void delete(Note note) {
+        new DeleteNoteAsync(mNoteDao).execute(note);
     }
 
     public LiveData<List<Note>> getAllNotes() {
-        return allNotes;
+        return mAllNotes;
     }
 
-    public static  class InsertNoteAsync extends AsyncTask<Note,Void,Void>{
-        private NoteDao noteDao;
+    public static class InsertNoteAsync extends AsyncTask<Note, Void, Void> {
+        private NoteDao mNoteDao;
 
-        private InsertNoteAsync(NoteDao noteDao){
-            this.noteDao=noteDao;
+        private InsertNoteAsync(NoteDao mNoteDao) {
+            this.mNoteDao = mNoteDao;
         }
 
         @Override
         protected Void doInBackground(Note... notes) {
-            noteDao.insert(notes[0]);
+            mNoteDao.insert(notes[0]);
             return null;
         }
     }
 
-    public static  class DeleteNoteAsync extends AsyncTask<Note,Void,Void>{
-        private NoteDao noteDao;
+    public static class DeleteNoteAsync extends AsyncTask<Note, Void, Void> {
+        private NoteDao mNoteDao;
 
-        private DeleteNoteAsync(NoteDao noteDao){
-            this.noteDao=noteDao;
+        private DeleteNoteAsync(NoteDao noteDao) {
+            this.mNoteDao = noteDao;
         }
 
         @Override
         protected Void doInBackground(Note... notes) {
-            noteDao.delete(notes[0]);
+            mNoteDao.delete(notes[0]);
             return null;
         }
     }

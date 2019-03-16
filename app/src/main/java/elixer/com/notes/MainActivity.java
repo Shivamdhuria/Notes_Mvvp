@@ -19,7 +19,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private NoteViewModel noteViewModel;
+    private NoteViewModel mNoteViewModel;
     public static final int ADD_NOTE_REQUEST_CODE = 1;
 
     @Override
@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(noteAdapter);
 
 
-        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
-        noteViewModel.getAllNotes().observe(this, notes -> {
+        mNoteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
+        mNoteViewModel.getAllNotes().observe(this, notes -> {
             //Recycler update
             noteAdapter.setNotes(notes);
         });
@@ -81,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
             int priority = data.getIntExtra(AddNoteActivity.EXTRA_PRIORITY, 0);
 
             Note newNote = new Note(title, description, priority);
-            noteViewModel.insert(newNote);
+            mNoteViewModel.insert(newNote);
             Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
 
-        }else{
+        } else {
 
             Toast.makeText(getApplicationContext(), "Not Saved", Toast.LENGTH_SHORT).show();
         }

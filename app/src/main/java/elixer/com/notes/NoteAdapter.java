@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import elixer.com.notes.model.Note;
 
-public class NoteAdapter extends RecyclerView.Adapter <NoteAdapter.NoteHolder>{
-    private List<Note> notes = new ArrayList<>();
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
+    private List<Note> mNotes = new ArrayList<>();
 
 
     @NonNull
@@ -27,7 +27,7 @@ public class NoteAdapter extends RecyclerView.Adapter <NoteAdapter.NoteHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull NoteHolder holder, int position) {
-        Note currentNote = notes.get(position);
+        Note currentNote = mNotes.get(position);
         holder.title.setText(currentNote.getTitle());
         holder.description.setText(currentNote.getDescription());
         holder.priority.setText(String.valueOf(currentNote.getPriority()));
@@ -37,7 +37,7 @@ public class NoteAdapter extends RecyclerView.Adapter <NoteAdapter.NoteHolder>{
 
     @Override
     public int getItemCount() {
-        return notes.size();
+        return mNotes.size();
     }
 
 
@@ -51,8 +51,9 @@ public class NoteAdapter extends RecyclerView.Adapter <NoteAdapter.NoteHolder>{
             priority = (TextView) view.findViewById(R.id.textView_priority);
         }
     }
-    public void setNotes(List<Note> notes){
-        this.notes = notes;
+
+    public void setNotes(List<Note> mNotes) {
+        this.mNotes = mNotes;
         notifyDataSetChanged();
 
     }
