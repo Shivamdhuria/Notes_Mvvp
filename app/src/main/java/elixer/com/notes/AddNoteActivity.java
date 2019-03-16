@@ -7,6 +7,7 @@ import butterknife.OnClick;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -37,6 +38,9 @@ public class AddNoteActivity extends AppCompatActivity {
     @OnClick(R.id.button)
     public void OnButtonClick(View view){
         Intent intent = new Intent(this,MainActivity.class);
+        Log.e("MAIN ACTIVITY", title.getText().toString());
+        Log.e("MAIN ACTIVITY", description.getText().toString());
+        Log.e("MAIN ACTIVITY", priority.getText().toString());
         intent.putExtra(EXTRA_TITLE,title.getText().toString());
         intent.putExtra(EXTRA_DESCRIPTION,description.getText().toString());
         intent.putExtra(EXTRA_PRIORITY,Integer.parseInt(priority.getText().toString()));

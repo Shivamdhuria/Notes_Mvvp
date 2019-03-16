@@ -18,6 +18,7 @@ import elixer.com.notes.Models.Note;
 import elixer.com.notes.Models.NoteViewModel;
 
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -83,15 +84,17 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == ADD_NOTE_REQUEST_CODE && resultCode == RESULT_OK) {
 
-            String title = getIntent().getStringExtra(AddNoteActivity.EXTRA_TITLE);
-            String description = getIntent().getStringExtra(AddNoteActivity.EXTRA_DESCRIPTION);
-            int priority = getIntent().getIntExtra(AddNoteActivity.EXTRA_PRIORITY, 0);
+            String title = data.getStringExtra(AddNoteActivity.EXTRA_TITLE);
+            String description = data.getStringExtra(AddNoteActivity.EXTRA_DESCRIPTION);
+            int priority = data.getIntExtra(AddNoteActivity.EXTRA_PRIORITY, 0);
 
             Note newNote = new Note(title, description, priority);
             noteViewModel.insert(newNote);
-            Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
 
+        }else{
 
+            Toast.makeText(getApplicationContext(), "Not Saved", Toast.LENGTH_SHORT).show();
         }
     }
 }
