@@ -1,10 +1,12 @@
 package elixer.com.notes;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import elixer.com.notes.Models.Note;
 import elixer.com.notes.Models.NoteViewModel;
 
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +27,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private NoteViewModel noteViewModel;
+    public static final int ADD_NOTE_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +36,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+        FloatingActionButton fab = findViewById(R.id.fab_add);
+        fab.setOnClickListener(view -> {
+            Intent addNoteIntent = new Intent(MainActivity.this, AddNoteActivity.class);
+            startActivityForResult(addNoteIntent, ADD_NOTE_REQUEST_CODE);
         });
 
         RecyclerView recyclerView = findViewById(R.id.recycylerView);
@@ -48,12 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
-        noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
-            @Override
-            public void onChanged(List<Note> notes) {
-                //Recycler update
-                noteAdapter.setNotes(notes);
-            }
+        noteViewModel.getAllNotes().observe(this, notes -> {
+            //Recycler update
+            noteAdapter.setNotes(notes);
         });
     }
 
@@ -77,5 +75,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADD_NOTE_REQUEST_CODE && resultCode == RESULT_OK) {
+
+            String title = getIntent().getStringExtra(AddNoteActivity.EXTRA_TITLE);
+            String description = getIntent().getStringExtra(AddNoteActivity.EXTRA_DESCRIPTION);
+            int priority = getIntent().getIntExtra(AddNoteActivity.EXTRA_PRIORITY, 0);
+
+            Note newNote = new Note(title, description, priority);
+            noteViewModel.insert(newNote);
+            Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+
+
+        }
     }
 }
