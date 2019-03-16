@@ -1,4 +1,4 @@
-package elixer.com.notes.Model;
+package elixer.com.notes.Models;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -20,6 +20,10 @@ public class Note {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
