@@ -6,5 +6,5 @@ ___
  ![Architecture](/Images/tree.png)
       
 ####Screenshots
-![Architecture](/Images/home.png)
-![Architecture](/Images/add.png)
+![Home](/Images/home.png)
+![Add](/Images/add.png)
