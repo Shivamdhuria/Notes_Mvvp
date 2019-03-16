@@ -10,7 +10,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import elixer.com.notes.Models.Note;
+import elixer.com.notes.model.Note;
 
 public class NoteAdapter extends RecyclerView.Adapter <NoteAdapter.NoteHolder>{
     private List<Note> notes = new ArrayList<>();

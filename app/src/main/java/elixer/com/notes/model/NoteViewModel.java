@@ -1,4 +1,4 @@
-package elixer.com.notes.Models;
+package elixer.com.notes.model;
 
 import android.app.Application;
 
