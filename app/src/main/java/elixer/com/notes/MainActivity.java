@@ -10,6 +10,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import elixer.com.notes.Models.Note;
 import elixer.com.notes.Models.NoteViewModel;
 
@@ -39,12 +41,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        RecyclerView recyclerView = findViewById(R.id.recycylerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        final NoteAdapter noteAdapter = new NoteAdapter();
+        recyclerView.setAdapter(noteAdapter);
+
+
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
             @Override
             public void onChanged(List<Note> notes) {
                 //Recycler update
-                Toast.makeText(getApplicationContext(),"Haha",Toast.LENGTH_SHORT).show();
+                noteAdapter.setNotes(notes);
             }
         });
     }
