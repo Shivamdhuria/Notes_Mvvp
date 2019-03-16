@@ -16,6 +16,7 @@ import elixer.com.notes.Models.NoteViewModel;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Note> notes) {
                 //Recycler update
+                Toast.makeText(getApplicationContext(),"Haha",Toast.LENGTH_SHORT).show();
             }
         });
     }
