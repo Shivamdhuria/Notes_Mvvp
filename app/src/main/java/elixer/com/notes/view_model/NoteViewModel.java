@@ -1,4 +1,4 @@
-package elixer.com.notes.viewModel;
+package elixer.com.notes.view_model;
 
 import android.app.Application;
 

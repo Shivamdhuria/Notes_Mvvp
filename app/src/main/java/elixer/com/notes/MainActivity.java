@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import elixer.com.notes.adapter.NoteAdapter;
 import elixer.com.notes.model.Note;
-import elixer.com.notes.viewModel.NoteViewModel;
+import elixer.com.notes.view_model.NoteViewModel;
 
 import android.view.Menu;
 import android.view.MenuItem;
