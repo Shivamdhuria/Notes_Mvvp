@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.squareup.leakcanary.LeakCanary;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +11,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import elixer.com.notes.adapter.NoteAdapter;
 import elixer.com.notes.model.Note;
-import elixer.com.notes.model.NoteViewModel;
+import elixer.com.notes.viewModel.NoteViewModel;
 
 import android.view.Menu;
 import android.view.MenuItem;

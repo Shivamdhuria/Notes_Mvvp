@@ -1,4 +1,4 @@
-package elixer.com.notes;
+package elixer.com.notes.optimize;
 
 import android.app.Application;
 

@@ -1,4 +1,4 @@
-package elixer.com.notes;
+package elixer.com.notes.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import elixer.com.notes.R;
 import elixer.com.notes.model.Note;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
